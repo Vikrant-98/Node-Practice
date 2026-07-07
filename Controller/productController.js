@@ -9,8 +9,8 @@ exports.getProduct = (request, response, next) => {
 
 exports.createProduct = (request, response, next) => {
     console.log("this is product post middleware");
-    const { title, imageUrl, description, price } = request.body;
-    const newProduct = new Product(null, title, imageUrl, description, price);
+    const { id,title, imageUrl, description, price } = request.body;
+    const newProduct = new Product(id, title, imageUrl, description, price);
     newProduct.save();
     response.status(201).json(newProduct);
 };
