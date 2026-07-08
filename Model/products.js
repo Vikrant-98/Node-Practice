@@ -19,8 +19,8 @@ module.exports = class Product
 
     static async fetchAll()
     {
-        return await  db.execute('SELECT * FROM product').then(([rows, fieldData]) => {     
-            return rows;  
+        return await  db.execute('CALL GetAllProducts()').then(([rows, fieldData]) => {     
+            return rows[0];  
         }).catch(err => {
             console.log(err);
         });
