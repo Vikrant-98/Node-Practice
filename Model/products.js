@@ -1,4 +1,5 @@
 const products = [];
+const db = require('../DBServices/database');
 
 module.exports = class Product
 {
@@ -16,9 +17,13 @@ module.exports = class Product
         products.push(this);
     }
 
-    static fetchAll()
+    static async fetchAll()
     {
-        return products;
+        return await  db.execute('SELECT * FROM product').then(([rows, fieldData]) => {     
+            return rows;  
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
 }

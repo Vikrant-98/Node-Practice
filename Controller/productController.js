@@ -1,9 +1,9 @@
 
 const Product = require('../Model/products');
 
-exports.getProduct = (request, response, next) => {
+exports.getProduct = async (request, response, next) => {
     console.log("this is product middleware");
-    const products = Product.fetchAll();
+    const products = await Product.fetchAll();
     response.json(products);
 };
 
