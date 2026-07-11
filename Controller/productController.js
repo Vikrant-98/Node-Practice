@@ -1,16 +1,31 @@
 
 const Product = require('../Model/products');
 
-exports.getProduct = async (request, response, next) => {
+exports.getProduct =  (request, response, next) => {
     console.log("this is product middleware");
-    const products = await Product.fetchAll();
-    response.json(products);
+    const products = Product.findAll().then(products => {
+        return products;
+    }).then(products => {
+        console.log(products);
+        response.json(products);
+    }).catch(err => {
+        console.log(err);
+    });
 };
 
-exports.createProduct = (request, response, next) => {
+exports.createProduct = async (request, response, next) => {
     console.log("this is product post middleware");
-    const { id,title, imageUrl, description, price } = request.body;
-    const newProduct = new Product(id, title, imageUrl, description, price);
-    newProduct.save();
-    response.status(201).json(newProduct);
+    const { title, imageUrl, description, price } = request.body;
+
+    Product.create({
+        title: title,
+        imageUrl: imageUrl,
+        description: description,
+        price: price
+    }).then(product => {
+        console.log(product);
+        response.status(201).json({ message: 'Product created successfully' });
+    }).catch(err => {
+        console.log(err);
+    });    
 };

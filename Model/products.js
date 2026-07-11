@@ -1,4 +1,44 @@
-const products = [];
+const Sequelize = require('sequelize');
+
+const sequelize = require('../DBServices/sequelizer');
+
+const Product = sequelize.define('product', {
+id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+},  
+title: {
+    type: Sequelize.STRING,
+    allowNull: false
+},
+imageUrl: {
+    type: Sequelize.STRING,
+    allowNull: true
+},  
+description: {
+    type: Sequelize.STRING,
+    allowNull: true
+},
+price: {
+    type: Sequelize.DOUBLE,
+    allowNull: true
+},
+createdAt: {
+    type: Sequelize.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.NOW
+},
+updatedAt: {
+    type: Sequelize.DATE,
+    allowNull: true,
+}
+});
+
+module.exports = Product;
+
+/*const products = [];
 const db = require('../DBServices/database');
 
 module.exports = class Product
@@ -26,4 +66,4 @@ module.exports = class Product
         });
     }
 
-}
+}*/
