@@ -25,6 +25,10 @@ price: {
     type: Sequelize.DOUBLE,
     allowNull: true
 },
+userId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+},
 createdAt: {
     type: Sequelize.DATE,
     allowNull: false,
