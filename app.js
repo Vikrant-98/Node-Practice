@@ -1,4 +1,4 @@
-const http = require('http');
+//const http = require('http');
 const express = require('express');
 const productRoutes = require('./Routes/product');
 const shopRoutes = require('./Routes/shop');
@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/product", productRoutes);
 app.use("/shop", shopRoutes);
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 sequelize.sync().then(result => {
     //console.log(result);
     console.log("Database connected successfully");

@@ -94,7 +94,22 @@ exports.signupUser = async (req, res) => {
 
 exports.getUser = async (req, res, next) => {
     try {
-        const users = await User.findAll({ where: { email: req.params.email, password: req.params.password, isDeleted: false } });
+        const users = await User.findAll({
+            where: {
+                isDeleted: false
+            },
+            attributes: [
+                'id',
+                'firstName',
+                'lastName',
+                'email',
+                'mobile',
+                'roleId',
+                'createdAt',
+                'updatedAt'
+            ]
+        });
+
         res.status(200).json(users);
     } catch (err) {
         console.error(err);
